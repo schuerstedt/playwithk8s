@@ -88,7 +88,7 @@ docker build -t imagename:tag (latest als Standard)
 bauen eines Dockerimages aus Basis buxybox der ein Hello World ausgibt
 Dockerfile
 FROM busybox
-CMD ["echo Hello World"]
+CMD ["/bin/echo", "Hello World"]
 
 docker build -t myownbusybox:1 .
 
@@ -97,6 +97,15 @@ docker run myownbusybox:1
 am Besten mit --rm starten, da ja ein Onetime Aufruf
 docker run --rm myownbusybox:1
 docker run --rm myownbusybox:1 /bin/echo HI MAC ' CMD kann ersetzt werden
+
+# alternative Ändern eines laufenden docker images und speichern mit
+docker exec -it CONTAINER sh
+docker diff CONTAINER
+docker commit CONTAINER repositoryname
+https://docs.docker.com/engine/reference/commandline/commit/
+docker save -o OUTPUT.tar repositoryname
+
+
 
 
 
